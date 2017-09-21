@@ -1,0 +1,21 @@
+<div class="main-items">
+    <p class="back-link"><a href="index.php">Home</a><span><a href="#"> / {{header.headerTitle}}</a></span></p>
+    <p class="back-link" id="rig" ng-show="profileName" ng-cloak><a href="profile.php#/mylists" class="my-list-mob-link"><i class="fa fa-user" aria-hidden="true"></i>  {{profileName}}</a></p>
+    <ul class="items m-small-p">
+        <li class="item clear-fix" 
+            ng-repeat="item in homeList " 
+            data-position="{{item.listuin_item_position}}">
+            <i class="fa fa-thumb-tack pin pin-style" 
+               ng-click="pinItemInLists($event, item)"></i>
+            <a href="#" class="arrow-popup" ng-show="item.pinMessage">{{item.pinMessage}}</a>
+            <a href="{{item.listuin_item_url}}" 
+               data-id="{{item.listuin_item_id}}"
+               target="_blank">
+            <img ng-src="{{item.listuin_item_image}}" alt="{{item.listuin_item_title}}"/>
+            <h4>{{item.listuin_item_title}}</h4>
+            <p>{{item.listuin_item_description}}</p>
+            <p class="tags h-exx-s" ng-bind-html="item.listuin_item_tags | addTagIcon"></p>
+            </a>    
+        </li>
+    </ul>
+</div>

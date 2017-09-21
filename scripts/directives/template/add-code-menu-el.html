@@ -1,0 +1,36 @@
+<div class="lists-menu-item bg-trans popup-container hide-popup" id="add-code-menu-item">
+    <div class="centar text-container" id="lists-menu-item"
+    	 style="background-color: #2aa55e;border: 4px solid #258a50">
+        <span class="message">Add new menu</span>
+        <form ng-submit="addCodeMenuItem(listsMenuItem)" 
+              name="addListMenuForm" 
+              class="clear-fix"
+              autocomplete="off"  
+              novalidate>
+
+            <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+            <input style="display:none" type="text" name="fakeusernameremembered1"/>  
+
+            <input type="text" 
+                   placeholder="title" 
+                   class="inputs" 
+                   id="lists-code-title" 
+                   ng-model="listsMenuItem.name" 
+                   name="title"
+                   ng-minlength="2"
+                   ng-maxlength="72"
+                   style="border: 2px solid #258a50"
+                   required>
+
+            <div class="lists-menu-item-errors">
+            <p ng-show="listsMenuItem.name == undefined &&
+                        submitedAddNewMenuItem" class="cmem">Please enter a valid title.</p>          
+            <p ng-show="menuTitleExsists == true && submitedAddNewMenuItem"  class="cmem">Menu title exsists.</p>            
+            </div>  
+            <div class="lists-menu-pup-buttons">
+                <input type="submit" class="btn green" style="float:right" value="Add" ng-click="submitedAddNewMenuItem=true">        
+                <input type="button" class="btn red cancle" value="Cancel">
+            </div>
+        </form>
+    </div>
+</div>

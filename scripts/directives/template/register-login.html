@@ -1,0 +1,224 @@
+<div id="show-create-popup" class="bg-trans popup-container hide-popup"
+        >
+    <div class="centar acc-pop login-register-m clear-fix">
+        <i class="fa fa-times" id="close"></i>
+
+        <div class="log-reg-left">
+            <img src="img/login-registration.jpg" alt="Login Image">
+        </div>
+        <div class="log-reg-right">
+            <!--REGISTRATION-->
+            <div id="registerContainer">
+                <h5 id='title-of-create'>Create a list</h5>
+                <form ng-submit="registration()" name="registerForm" autocomplete="off" novalidate>
+
+                    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+                    <input style="display:none" type="email" name="fakeusernameremembered1"/>
+                    <input style="display:none" type="password" name="fakepasswordremembered1"/>
+
+                    <div class="input-info">Email*</div>
+                    <input type="email" 
+                           class="inputs" 
+                           id="regEmail" 
+                           name="regEmail"
+                           ng-model="registerUser.email" 
+                           maxlength="30" 
+                           ng-keypress="submited = false; registrationErrorMsg=''" 
+                           ng-class="{'valid-input': registerForm.regEmail.$valid,
+                                      'invalid-input': registrationErrorMsg}"
+                           required>
+
+                    <div class="register-error-msg">
+                        <span ng-show="registerForm.regEmail.$error.email">Plese enter a valid email address.</span>
+                        <span ng-show="submited && registerUser.email == undefined">Please enter your email.</span>
+                        <span ng-show="registrationErrorMsg">Email exsist.</span>
+                    </div>    
+
+                    <div class="input-info">Password*</div>
+                    <input type="password" 
+                           class="inputs" 
+                           id="regPass" 
+                           ng-model="registerUser.password"
+                           ng-minlength="8" 
+                           maxlength="25" 
+                           ng-keypress="submited = false" 
+                           name="regPass" 
+                           ng-class="{'valid-input': registerForm.regPass.$valid}"
+                           required>
+
+                    <div class="register-error-msg">
+                        <span ng-show="registerForm.regPass.$error.minlength">Password must be at least 8 characters long.</span>
+                        <span ng-show="submited && registerUser.password == undefined">Please enter your password.</span>
+                    </div>
+
+                    <div class="input-info">Confirm Password*</div>
+                    <input type="password" 
+                           class="inputs" 
+                           id="regPass2" 
+                           ng-model="registerUser.password2"  
+                           ng-keypress="submited = false" 
+                           ng-class="{'valid-input': registerUser.password == registerUser.password2 && registerForm.regPass.$dirty && registerUser.password2.length > 8}"
+                           required>
+                           
+                    <div class="register-error-msg">
+                        <span ng-show="registerUser.password !== registerUser.password2">Password does not match.</span>
+                        <span ng-show="submited && registerUser.password2 == undefined">Please enter your password again.</span>
+                    </div>
+
+                    <div style="display: none;">
+                     <input type="text" id="PreventChromeAutocomplete" 
+                      name="PreventChromeAutocomplete" autocomplete="address-level4" />
+                    </div>      
+                    <br>
+                    
+
+                    <div class="btns clear-fix">
+                        <ul class="clear-fix form-main-manu">
+                            <li>
+                                <input type="submit" class="btn green" id="save-create-list"
+                                       value="Make a list &#10150;" ng-click="submited=true">
+                            </li>
+                            <li>
+                                <input type="button" class="btn yellow go-to-login"
+                                       value="Login">       
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <!--LOGIN-->
+            <div id="loginContainer" style="display:none">
+                <h5 id='title-of-create'>Login</h5>
+                <form ng-submit="login()" name="loginForm" autocomplete="off" novalidate>
+
+                    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+                    <input style="display:none" type="text" name="fakeusernameremembered"/>
+                    <input style="display:none" type="password" name="fakepasswordremembered"/>
+
+                    <div class="input-info">Username</div>
+                    <input type="text" 
+                           class="inputs" 
+                           id="loginEmail" 
+                           name="loginUsername"
+                           autocomplete="off"
+                           ng-model="loginUser.username" 
+                           maxlength="30" 
+                           ng-keypress="submitedLogin = false; loginErrorMsg=''" 
+                           required>
+
+                    <div class="register-error-msg">
+                        <span ng-show="submitedLogin && loginUser.username == undefined">Please enter username.</span>
+                        <span ng-show="loginErrorMsg" class="loginErrorMsg">{{loginErrorMsg}}</span>
+                    </div>    
+
+                    <div class="input-info">Password</div>
+                    <input type="password" 
+                           class="inputs" 
+                           id="loginPass" 
+                           ng-model="loginUser.password"
+                           maxlength="25"
+                           ng-keypress="submitedLogin = false" 
+                           name="loginPass" 
+                           required>
+
+                    <div class="register-error-msg">
+                        <span ng-show="submitedLogin && loginUser.password == undefined">Please enter password.</span>
+                    </div>
+
+                    <div class="login-info">
+                        <input type="checkbox" id="remembermeLog" 
+                                ng-model="loginUser.remeberme">
+                                <label for="remembermeLog"> Remember me</label>
+                        <div class="clear-fix">
+                          <span class="go-retrive-pass">Lost your password?</span>
+                        </div>
+                    </div>
+
+                    <div style="display: none;">
+                     <input type="text" id="PreventChromeAutocomplete" 
+                      name="PreventChromeAutocomplete" autocomplete="address-level4" />
+                    </div>
+                
+
+                    <div class="btns clear-fix">
+                        <ul class="clear-fix form-main-manu">
+                            <li>
+                                <input type="submit" class="btn green" id="loginTomMyList" value="Login &#10150;" ng-click="submitedLogin=true; loginErrorMsg=''">
+                            </li>
+                            <li>
+                                <input type="button" class="btn yellow go-to-register" value="Register">      
+                            </li>
+                            <li class="form-loading-gif">
+                                <div class="loader" ng-show="loginFormLoader">Loading...</div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>  
+            </div>
+
+            <!--RETRIVE PASSWORD-->
+            <div id="retrivePassContainer" style="display:none">
+                <h5 id='title-of-create'>Retrive Password</h5>
+                <form ng-submit="retrivePass()" name="retriveEmailForm" autocomplete="off" novalidate>
+
+                    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+                    <input style="display:none" type="email" name="fakeusernameremembered2"/>
+
+                    <div class="input-info">Please enter your email or username.</div>
+                    <input type="text" 
+                           class="inputs" 
+                           id="retriveEmail" 
+                           name="retriveEmail"
+                           autocomplete="off"
+                           ng-model="retriveEmailAddress.username" 
+                           maxlength="30" 
+                           ng-keypress="submitedRetriveEmail = false" 
+                           required>
+
+                    <div class="register-error-msg">
+                        <span ng-show="submitedRetriveEmail && retriveEmailAddress.username == undefined">Please enter your email.</span>
+                        <span class="retrivePassMsg">{{retrivePasswordMsg}}</span>
+                    </div>    
+
+
+
+                    <div style="display: none;">
+                     <input type="text" id="PreventChromeAutocomplete" 
+                      name="PreventChromeAutocomplete" autocomplete="address-level1" />
+                    </div>      
+                    <br>
+
+                    <div class="btns clear-fix">
+                        <ul class="clear-fix form-main-manu">
+                            <li style="float: right">
+                                <input type="submit" class="btn green" id="retrive-email"
+                                       value="Submit &#10150;" ng-click="submitedRetriveEmail=true">
+                            </li>
+                            <li>
+                                <input type="button" class="btn yellow go-to-register" value="Register">      
+                            </li>
+                            <li>
+                                <input type="button" class="btn yellow go-to-login" value="Login">
+                            </li>
+                            <li class="form-loading-gif">
+                                <div class="loader" ng-show="retrivePassFormLoader">Loading...</div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>  
+            </div>
+
+            <!--LOADING ANIMATION-->
+            <div id="formLoadingAnimationBig" style="display:none">
+                 <div class="containerAnime">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

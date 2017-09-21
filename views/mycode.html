@@ -1,0 +1,100 @@
+<div class="main-items">
+    <p class="back-link"><a href="index.php">Home</a><span><a href="#"> / My List</a></span></p>
+    <button class="code-small-btn greenBack" 
+    	    ng-show="addCodeState" 
+			ng-click="editCode()"
+    	    ng-cloak>Add/Edit</button>
+    <button class="code-small-btn greenBack"
+    		ng-show="saveCodeState"
+    		ng-click="saveSodeSample()">Save</button>
+    <button class="code-small-btn code-cancel-btn"
+    		ng-show="cancelCodeState"
+    		ng-click="codeCancel()">Cancel</button>	    
+    <ul class="items m-small-p add-list-link" id="add-lists-link" 
+        ng-if="myListData.length < 20">
+        <li>
+            <span class="my-list-item" id="add-external-link">
+                <p class="external">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add new link <i class="fa fa-link" id="remove-item"></i>
+                </p>
+            </span>
+        </li>
+    </ul>
+<!-- LIST ITEMS -->    
+	<div class="code-contaniner" id="myCode">
+		
+	</div>
+
+   	<div class="create-menu-item" ng-show="myCodeMsgBox">
+        <div id="codeMsg"></div>
+    </div>
+     <!-- <ul class="items m-small-p" id="empty-list-msg" 
+         ng-show="myListData.length == 0">
+        <li><a href="#" class="my-list-item" id="link-off" onclick="return false">
+            <p class="empty"><i class="fa fa-list"></i> Your list is empty</p>
+            </a>
+        </li>
+    </ul>
+    <div class="my-list-items-note clear-fix">
+        <div id="remove-all-links"><a href="">{{pageParams | uppercase}}</a>
+            <span class="color3 small-btn" id="yes"> Yes </span> 
+            <span class="color1 small-btn" id="no"> No </span>
+        </div>
+        <div class="right"><span id="list-num-of-items"></span></div>
+        <div class="list-counter">{{myListData.length}}/20</div>
+    </div> -->
+<!--Models-->        
+	<add-new-submenu></add-new-submenu>
+    <add-code-menu-el></add-code-menu-el>
+    <remove-code-menu-el></remove-code-menu-el>
+</div>
+<aside class="side-code-menu hide-on-small asideMenu"
+       ng-hide="mobMenuControl">
+    <div class="profile-code-menu">
+
+<!-- Lists Menu -->     
+        <ul class="profile-code-side-menu" id="codeMenu" 
+        	ng-class="{'fixCodeMenuMargin' : myCodeMenu.length == 0 || !myCodeMenu}">
+            <li ng-repeat="menuItem in myCodeMenu track by $index" 
+                data-eleId="{{menuItem.user_code_menu_item_id}}"
+                ng-class="{'mainCodeMenu': menuItem.user_code_submenu_id == null}"
+                ng-click="codeMenu($event, menuItem); accordion.current = menuItem.user_code_menu_title"
+                class="greenBack">
+                <a href="" 
+                	data-submenuOf="{{menuItem.user_code_submenu_id}}"
+                    class="mylist-menu-link main-code-menu"
+                    title="{{menuItem.user_code_menu_title.length > 15 ? menuItem.user_code_menu_title : ''}}">
+                    <span class="menu-title">{{menuItem.user_code_menu_title | longTitle: 15}}</span>
+                </a>
+                <i class="fa fa-font change-menu-title"
+                   ng-click="changeCodeMenuTitle($event, menuItem)"></i>
+                <i class="fa fa-trash remove-lists-menu-element" aria-hidden="true" 
+                   ng-click="removeCodeMenuItem($event, menuItem)" id="removeListsMenuELe"></i>
+
+                <!-- Submenu -->
+	            <ul class="submenu" ng-show="accordion.current == menuItem.user_code_menu_title">
+	            	<li ng-repeat="submenu in menuItem.menu_submenu"
+	            		data-sbumenu-Id="{{submenu.user_code_menu_item_id}}">
+	            		<a href="" class="mycode-submenu" 
+	            		   ng-click="getMyCode($event, submenu)"
+	            		   data-menu-eleId="{{menuItem.user_code_menu_item_id}}"
+	            		   data-sbumenu-eleId="{{submenu.user_code_menu_item_id}}"
+                           title="{{submenu.user_code_menu_title.length > 17 ? submenu.user_code_menu_title : ''}}">
+	            			<span ng-click="getMyCodeSpan($event, submenu)" class="submenu-title">{{submenu.user_code_menu_title | longTitle: 17}}</span>
+	            		</a>
+	            		<i class="fa fa-font change-menu-title"
+		                   ng-click="changeCodeSubmenuTitle($event, submenu)"></i>
+		                <i class="fa fa-trash remove-lists-menu-element" aria-hidden="true" 
+		                   ng-click="removeCodeSubmenuItem($event, submenu)" id="removeListsMenuELe"></i>
+			        </li>
+	            </ul> 
+            </li> 
+        </ul>    
+        <div class="add-menu-code-item">
+            <span class="add-external-menu-item" id="addLinksMenuEl"><i class="fa fa-plus" aria-hidden="true"></i> Add menu</span>
+        </div>  
+    </div>
+    <div id="g-ads-rb">
+        
+    </div>
+</aside>

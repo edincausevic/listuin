@@ -1,0 +1,35 @@
+<div class="lists-menu-item bg-trans popup-container hide-popup">
+    <div class="centar text-container external-colors" id="lists-menu-item">
+        <span class="message">Add new menu item.</span>
+        <form ng-submit="addListsMenuItem" class="clear-fix" novalidate>
+            <input type="text" placeholder="title" class="inputs"
+                    ng-model="listsMenuItem.name">
+            <p ng-show="listsMenuItem.name.length < 0">Please enter a value.</p>
+            <p ng-show="listsMenuItem.name.length > 30">Title to long! (3-30)</p>
+            <p ng-show="listsMenuItem.name.length < 3">Title to short! (3-30)</p>  
+            <div class="lists-menu-pup-buttons">
+                <button class="btn green" id="add-external-url" style="float:right">Add</button>
+                <button class="btn red" id="btn red cancle">Cencle</button>
+            </div>
+     
+        </form>
+    </div>
+</div>
+
+<!--
+<input type="text" placeholder="title" maxlength="25" class="inputs ext-input" id="external-title" >
+            <div id="error-external-title">&nbsp;</div>
+            <input type="text" placeholder="url" class="inputs ext-input" id="external-url" >
+            <div id="error-external-url">&nbsp;</div>
+            <div class="btns" id="ext-btns">
+                <ul>
+                    <li>
+                        <a href="#" class="btn green" id="add-external-url">Add</a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn red cancle">Cancel</a>
+                    </li>
+                </ul>
+            </div>
+
+-->

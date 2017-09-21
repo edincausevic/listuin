@@ -1,0 +1,51 @@
+<div class="lists-menu-item bg-trans popup-container hide-popup" id="add-new-link">
+    <div class="centar text-container" id="lists-menu-item">
+        <span class="message">Add new link</span>
+        <form ng-submit="addNewLinkItem(listsLinkItem)" 
+              name="addNewLink" 
+              class="clear-fix"
+              autocomplete="off"  
+              novalidate>
+
+            <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+            <input style="display:none" type="text" name="fakeusernameremembered1"/>  
+
+            <input type="text" 
+                   placeholder="title" 
+                   class="inputs" 
+                   id="lists-link-title" 
+                   ng-model="listsLinkItem.title" 
+                   name="title"
+                   ng-keypress="submitedAddNewLinkItem=false"
+                   ng-minlength="2"
+                   ng-maxlength="472"
+                   required>
+
+            <div class="lists-menu-item-errors">
+            <span ng-show="listsLinkItem.title == undefined &&
+                        submitedAddNewLinkItem">
+                        Please enter a valid title.</span>
+            <span ng-show="addNewLink.title.$error.minlength">Title to short.</span> 
+            <span ng-show="addNewLink.title.$error.maxlength">Title to Long.</span>         
+            </div>  
+
+            <input type="url" 
+                   placeholder="url" 
+                   class="inputs" 
+                   id="lists-link-url" 
+                   ng-model="listsLinkItem.url" 
+                   ng-keypress="submitedAddNewLinkItem=false"
+                   name="url">
+
+            <div class="lists-menu-item-errors">
+            <p ng-show="listsLinkItem.url == undefined &&
+                        submitedAddNewLinkItem">Please enter a url.</p>
+            <p ng-show="addNewLink.$error.url">Please enter a valid url.</p>
+            </div> 
+            <div class="lists-menu-pup-buttons">
+                <input type="submit" class="btn green" style="float:right" value="Add" ng-click="submitedAddNewLinkItem=true">        
+                <input type="button" class="btn red cancle" value="Cancel">
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<header id="mob-header" data-header="small" class="{{headerImage}}">
+    <div class="hero-text-box lists-text-box" 
+          ng-show="whichPage !== '/free/videos'" ng-cloak>
+        <h1>{{header.headerTitle}}</h1>
+        <h2>{{header.subtitle}}</h2> 
+        <a href="terms.php" id="pandt">Privacy and Terms</a>
+    </div>
+    <video autoplay loop poster="css/img/videos/video-back.png"
+            ng-show="whichPage == '/free/videos'" ng-cloak>
+            <source src="css/img/videos/video-back.mp4" type="video/mp4">
+            <source src="css/img/videos/video-back.webm" type="video/webm">
+            <source src="css/img/videos/video-back.ogv" type="video/ogg">
+            </video>
+            <div class="hero-text-box lists-text-box" 
+                 ng-show="whichPage == '/free/videos'">
+                <h1>Videos</h1>
+                <h2>Best websites to find free videos</h2> 
+                <a href="terms.php" id="pandt">Privacy and Terms</a>
+            </div>
+    <div class="video-back" ng-show="whichPage == '/free/videos'"></div>
+</header>

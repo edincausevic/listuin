@@ -1,0 +1,90 @@
+<div class="main-items">
+    <p class="back-link"><a href="index.php">Home</a><span><a href="#"> / My List</a></span></p>
+    <div ng-hide="myListsListsButtons">
+    	<ul class="items m-small-p add-list-link" id="add-lists-link" >
+	        <li>
+	            <span class="my-list-item" id="add-external-link">
+	                <p class="external">
+	                <i class="fa fa-plus" aria-hidden="true"></i> Add new link <i class="fa fa-link" id="remove-item"></i>
+	                </p>
+	            </span>
+	        </li>
+	    </ul>
+	     <ul class="items m-small-p" id="empty-list-msg" 
+	         ng-show="myListData.length == 0">
+	        <li><a href="#" class="my-list-item" id="link-off" onclick="return false">
+	            <p class="empty"><i class="fa fa-list"></i> Your list is empty</p>
+	            </a>
+	        </li>
+	    </ul>
+    </div>
+    <div class="create-menu-item" ng-show="myListsMsgBox" ng-cloak>
+        <div id="listsMsg"></div>
+    </div>
+<!-- LIST ITEMS -->    
+    <ul class="items m-small-p" id="link-list" 
+        ng-show="myListMenuData.length > 0">
+        
+        <li class="my-list-item" ng-repeat="listItem in myListData | orderBy:user_list_item_position:true"
+            data-id="{{listItem.user_list_item_id}}"
+            data-listPosition="{{listItem.user_list_item_position}}">
+        <i class="fa fa-trash list-itme-icons" aria-hidden="true"
+           ng-click="removeListItemModel(listItem)"></i>
+        <!--<i class="fa fa-paint-brush list-itme-icons change-color"></i>-->
+        <i class="fa fa-font list-itme-icons change-link-title"></i>
+        <a href="{{listItem.user_list_item_url}}" target="_blank"
+           class="hash-check"
+           title="{{listItem.user_list_item_title.length > 30 ? listItem.user_list_item_title : ''}}">
+        <p>
+        <!--<i class="fa fa-share-square-o"></i>-->
+        <span class="l-title">{{listItem.user_list_item_title | longTitle:30}}</span>
+        </p>
+        </a>
+        </li>
+    </ul>    
+    
+    <div class="my-list-items-note clear-fix" ng-hide="myListsListsButtons">
+        <div id="remove-all-links"><a href="" ng-show="pageParams !== 'undefined'">{{pageParams | uppercase}}</a>
+            <span class="color3 small-btn" id="yes"> Yes </span> 
+            <span class="color1 small-btn" id="no"> No </span>
+        </div>
+        <div class="right"><span id="list-num-of-items"></span></div>
+        <div class="list-counter">{{myListData.length}} Items</div>
+    </div>
+<!--Models-->        
+    <add-list-menu-item></add-list-menu-item>  
+    <remove-lists-menu-el-module></remove-lists-menu-el-module>
+    <add-new-list-link></add-new-list-link> 
+    <remove-my-lists-link></remove-my-lists-link>  
+</div>
+<aside class="side-menu hide-on-small asideMenu">
+    <div class="profile-lists-menu">
+
+<!-- Lists Menu -->     
+        <ul class="profile-lists-side-menu" 
+            ng-show="myListMenuData.length > 0">
+            <li ng-repeat="menuItem in myListMenuData | 
+                orderBy: '+user_menu_item_position'" 
+                data-position="{{menuItem.user_menu_item_position}}"
+                data-eleId="{{menuItem.user_menu_item_id}}"
+                class="redBack">
+                <!--<i class="fa fa-list" aria-hidden="true"></i>--> 
+                <a href="#/mylists/{{menuItem.user_menu_item_title}}" 
+                    class="mylist-menu-link"
+                    title="{{menuItem.user_menu_item_title.length > 15 ? menuItem.user_menu_item_title : ''}}">
+                    <span ng-class="{'lists-menu-active':pageParams == menuItem.user_menu_item_title}">{{menuItem.user_menu_item_title | longTitle:15}}</span>
+                </a>
+                <i class="fa fa-font change-menu-title"></i>
+                <i class="fa fa-trash remove-lists-menu-element" aria-hidden="true" 
+                   ng-click="removeListsMenuItem(menuItem)" id="removeListsMenuELe"></i>
+            </li>
+        </ul>    
+        <div class="add-menu-lists-item">
+            <span class="add-external-menu-item" id="addLinksMenuEl"><i class="fa fa-plus" aria-hidden="true"></i> Add menu</span>
+        </div>  
+    </div>
+    <div id="g-ads-rb">
+        
+    </div>
+</aside>
+

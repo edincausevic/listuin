@@ -1,0 +1,263 @@
+<div class="main-items profile-main">
+<p class="back-link"><a href="index.php">Home</a><span><a href="#"> / My List</a></span></p>
+
+<!-- CHANGE USERNAME -->    
+
+<div class="myprofile-title">
+	Change Username
+</div>  
+<div class="profileFormContainer">
+	<form class="change-user-name-form form-container" name="usernameForm"
+		ng-submit="changeUserName(changeUser)" autocomplete="off" novalidate>
+	
+
+		<label>New Username</label>
+		<input type="text" class="inputs" 
+			   ng-model="changeUser.username" 
+			   name="UFUsername" 
+			   ng-minlength="3" 
+			   ng-maxlength="20"
+			   autocomplete="off"
+			   id="changeUN"
+			   ng-keypress="changeUsername = false"
+			   required>
+
+		<div class="profile-error">
+		<span ng-show="changeUsername && usernameForm.UFUsername.$invalid" ng-cloak>Please enter username.</span>
+		<span ng-show="usernameForm.UFUsername.$error.minlength">Username to short!</span>
+		<span ng-show="usernameForm.UFUsername.$error.maxlength">Username to long!</span>
+		</div>
+
+
+		<label>Password</label>
+		<input type="password" class="inputs" 
+			   ng-model="changeUser.password" 
+			   name="UFPassword"
+			   ng-minlength="3" 
+			   ng-maxlength="30"
+			   autocomplete="off"	
+			   ng-keypress="changeUsername = false"
+			   required>
+		
+		<div class="profile-error">
+		<span ng-show="changeUsername && usernameForm.UFPassword.$invalid" ng-cloak>Please enter password.</span>
+		<span ng-show="usernameForm.UFPassword.$error.minlength">Password to short!</span>
+		<span ng-show="usernameForm.UFPassword.$error.maxlength">Password to long!</span>
+		</div>
+
+		<label>Repeat Password</label>
+		<input type="password" class="inputs" 
+			   ng-model="changeUser.password1" 
+			   name="UFPassword1"
+			   autocomplete="off"
+			   ng-keypress="changeUsername = false"
+			   required>
+
+		<div class="profile-error">
+			<span ng-show="changeUser.password !== changeUser.password1">Password does not match.</span>
+			<span ng-show="changeUsername && usernameForm.UFPassword1.$invalid">Please repeat your password.</span>
+		</div>
+
+		<div class="profile-error">
+			<span ng-show="changeUsername && usernameExsists">{{usernameExsists}}</span>
+		</div>
+
+		<div style="display: none;">
+	     <input type="text" name="PreventChromeAutocomplete" autocomplete="address-level4" />
+	    </div>
+
+		<input type="submit" value="Change User Name" class="profile-btn"
+				ng-click="changeUsername = true">
+	</form>
+
+	<div id="usernameSuccess">
+		<span ng-show="newUserName">
+			<span class="profile-success">Success</span>: Your new username is {{newUserName}}.
+		</span>
+	</div>
+
+	 <!--LOADING ANIMATION-->
+    <div class="username-loading">
+         <div class="containerAnime">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="myprofile-title">
+	Change E-mail
+</div>  
+<div class="profileFormContainer profile-close-accord">
+	<form class="change-email-name-form form-container" name="emailForm"
+		ng-submit="changEmailName(changeEmail)" autocomplete="off" novalidate>
+	
+
+		<label>New Email</label>
+		<input type="email" class="inputs" 
+			   ng-model="changeEmail.email" 
+			   name="EFemail" 
+			   autocomplete="off"
+			   id="changeEmailInput"
+			   ng-keypress="changeEmailValidate = false"
+			   required>
+
+		<div class="profile-error">
+		<span ng-show="changeEmailValidate && emailForm.EFemail.$invalid" ng-cloak>Please enter email.</span>
+		<span ng-show="emailForm.EFemail.$error.email">Email invalid!</span>
+		</div>
+
+
+		<label>Password</label>
+		<input type="password" class="inputs" 
+			   ng-model="changeEmail.password" 
+			   name="EFPassword"
+			   ng-minlength="3" 
+			   ng-maxlength="30"
+			   autocomplete="off"	
+			   ng-keypress="changeEmailValidate = false"
+			   required>
+		
+		<div class="profile-error">
+		<span ng-show="changeEmailValidate && emailForm.EFPassword.$invalid" ng-cloak>Please enter password.</span>
+		<span ng-show="emailForm.EFPassword.$error.minlength">Password to short!</span>
+		<span ng-show="emailForm.EFPassword.$error.maxlength">Password to long!</span>
+		</div>
+
+		<label>Repeat Password</label>
+		<input type="password" class="inputs" 
+			   ng-model="changeEmail.password1" 
+			   name="UFPassword1"
+			   autocomplete="off"
+			   ng-keypress="changeEmailValidate = false"
+			   required>
+
+		<div class="profile-error">
+			<span ng-show="changeEmail.password !== changeEmail.password1">Password does not match.</span>
+			<span ng-show="changeEmailValidate && usernameForm.UFPassword1.$error.password">Please repeat your password.</span>
+		</div>
+
+		<div class="profile-error">
+			<span ng-show="emailExsists">{{emailExsists}}</span>
+		</div>
+
+		<div style="display: none;">
+	     <input type="text" name="PreventChromeAutocomplete" autocomplete="address-level4" />
+	    </div>
+
+		<input type="submit" value="Change Email" class="profile-btn"
+				ng-click="changeEmailValidate = true">
+	</form>
+
+	<div id="emailSuccess">
+		<span ng-show="newEmailName">
+			<span class="profile-success">Success</span>: Your new email is {{newEmailName}}.
+		</span>
+	</div>
+
+	 <!--LOADING ANIMATION-->
+    <div class="email-loading">
+         <div class="containerAnime">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="myprofile-title">
+	Change Password
+</div>  
+<div class="profileFormContainer profile-close-accord">
+	<form class="change-password-form form-container" name="passwordForm"
+		ng-submit="changPassword(changePass)" autocomplete="off" novalidate>
+
+
+		<label>Old Password</label>
+		<input type="password" class="inputs" 
+			   ng-model="changePass.oldpassword" 
+			   name="oldPassword"
+			   autocomplete="off"	
+			   ng-keypress="changePasswordValidate = false"
+			   required>
+		
+		<div class="profile-error">
+		<span ng-show="changePasswordValidate && passwordForm.oldPassword.$invalid" ng-cloak>Please enter password.</span>
+		<span ng-show="">Password Incorrect.</span>
+		</div>
+
+		<label>New Password</label>
+		<input type="password" class="inputs" 
+			   ng-model="changePass.newpassword" 
+			   name="newPassword1"
+			   autocomplete="off"
+			   ng-keypress="changePasswordValidate = false"
+			   required>
+
+		<div class="profile-error">
+			<span ng-show="changePasswordValidate && !changePass.newpassword">Please enter new password.</span>
+		</div>
+
+		<div class="profile-error">
+			<span ng-show="passExsists">{{passExsists}}</span>
+		</div>
+
+		<div style="display: none;">
+	     <input type="text" name="PreventChromeAutocomplete" autocomplete="address-level4" />
+	    </div>
+
+		<input type="submit" value="Change Password" class="profile-btn"
+				ng-click="changePasswordValidate = true">
+	</form>
+
+	<div id="passwordSuccess">
+		<span ng-show="newPasswordName">
+			<span class="profile-success">Success</span>: Your password has been changed!
+		</span>
+	</div>
+
+	 <!--LOADING ANIMATION-->
+    <div class="newPasswordName-loading">
+         <div class="containerAnime">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+<aside class="side-menu hide-on-small">
+
+
+<!-- Lists Menu -->     
+<div id="side-menu-links">
+  <ul>
+  		<li class="side-menu-title" style="padding: 17px 0px 18px 95px">Free Material</li>
+        <li><a href="index.php#/free/photos-images">Photos</a></li>
+        <li><a href="index.php#/free/videos">Videos</a></li>
+        <li><a href="index.php#/free/audio-mp3-music">Audio &#38; Sounds</a></li>
+        <li><a href="index.php#/free/fonts">Fonts</a></li>
+        <li><a href="index.php#/free/icons">Icons</a></li>
+        <li><a href="index.php#/free/colors">Colors</a></li>
+        <li><a href="index.php#/free/patterns-textures">Patterns &#38; Textures</a></li>
+        <li><a href="index.php#/free/psd-websites-templates">PSD</a></li>
+        <li><a href="index.php#/free/design">Design</a></li>
+        <li><a href="index.php#/free/html">HTML</a></li>
+        <li><a href="index.php#/free/css-sass">CSS/SASS</a></li>
+        <li><a href="index.php#/free/js-javascript">Javascript</a></li>
+        <li><a href="index.php#/free/development">Development</a></li>
+  </ul>
+</div>
+ 
+
+<div id="g-ads-rb">
+
+</div>
+</aside>

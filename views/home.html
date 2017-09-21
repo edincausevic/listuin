@@ -1,0 +1,31 @@
+<div class="main-items">
+    <div class="mob-profile-link">
+        <div class="my-list-link  clear-fix"
+         ng-if="loginStateWich == 1" ng-cloak>
+            <a href="profile.php#/mylists">
+                <p class="name-of-my-list"><i class="fa fa-user" aria-hidden="true"></i> {{profileName}}</p>
+            </a>
+        </div>
+    </div>
+    <div class="my-list-profile m-small-p" 
+         ng-if="loginStateWich == 0" ng-cloak>     
+        <div class="create" id="create-list">
+            <h5><i class="fa fa-list"></i> Make your own list.</h5>  
+        </div>
+    </div>
+    <ul class="items m-small-p">
+        <li class="item clear-fix" 
+            ng-repeat="item in homeList track by $index" 
+            data-position="{{item.listuin_item_position}}">
+            <i class="fa fa-thumb-tack pin pin-style" 
+               ng-click="pinItemInLists($event, item)"></i>
+            <a href="#" class="arrow-popup" ng-show="item.pinMessage">{{item.pinMessage}}</a>
+            <a href="{{item.listuin_item_url}}" data-id="{{item.listuin_item_id}}">
+            <img ng-src="{{item.listuin_item_image}}" alt="{{item.listuin_item_title}}"/>
+            <h4>{{item.listuin_item_title}}</h4>
+            <p>{{item.listuin_item_description}}</p>
+            <p class="tags h-exx-s" ng-bind-html="item.listuin_item_tags | addTagIcon"></p>
+            </a>    
+        </li>
+    </ul>
+</div>
